@@ -29,6 +29,17 @@ button {
   color: lightblue;
   background-color: black;
 }
+label {
+    display: block;
+}
+
+input,
+label {
+    margin: .4rem 0;
+  border-color: lightblue;
+  background-color: black;
+  color: lightblue;
+}
 </style>
 </head>
 <body>
@@ -36,11 +47,30 @@ button {
     CryptoCoin Sign In:
   </h1>
   <p>
-    Sign in with google:
+    Sign in with CryptoCoin:
   </p>
-  <button>
-    click
+    <label for "name">
+Please Type Your Username:
+</label>
+<input type="text" id="name" name="name" required
+       minlength="4" maxlength="20" size="10">
+ <button onclick="window.location.href = 'https://8080-dot-4789806-dot-devshell.appspot.com/resources/HomePage.html'">
+    Sign In
   </button>
-    
+<p>
+    Don't have an account?
+</p>
+<p>
+    Create one now:
+</p>
+<label for "name">
+Please Choose Your Username:
+(20 characters max)
+</label>
+<input type="text" id="name" name="name" required
+       minlength="4" maxlength="20" size="10">
+ <button onclick="window.location.href = 'https://8080-dot-4789806-dot-devshell.appspot.com/resources/HomePage.html'">
+    Sign Up
+  </button>
 </body>
 </html>
