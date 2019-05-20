@@ -15,16 +15,16 @@ Released under the MIT license: http://jsbin.mit-license.org
   <title>CryptoCoin</title>
 <style id="jsbin-css">
 h1 {
-  color: blue;
+  color: lightblue;
 }
 p {
-  color: blue;
+  color: lightblue;
 }
 html {
   background-color:black;
 }
 ul {
-  color: blue;
+  color: lightblue;
 }
 label {
     display: block;
@@ -33,15 +33,21 @@ label {
 input,
 label {
     margin: .4rem 0;
-  border-color: blue;
+  border-color: lightblue;
   background-color: black;
-  color: blue;
+  color: lightblue;
+}
+button {
+  margin: .4rem 0;
+  border-color: lightblue;
+  color: lightblue;
+  background-color: black;
 }
 </style>
 </head>
 <body>
 <h1>
-  CryptoCoin Transfer Page
+  CryptoCoin Transaction Page
 </h1>
 <p>
   Select Name:
@@ -63,12 +69,16 @@ label {
 <label for="name">Note:</label>
 
 <input type="text" id="name" name="name" required
-       minlength="4" maxlength="8" size="10">
+       minlength="4" maxlength="150" size="10">
 <p></p>
 <button class="favorite styled"
         type="button">
     Transfer
 </button>
-  
+<p></p>
+<button class="favorite styled"
+        type="button">
+    Cancel?
+</button>
 </body>
 </html>
