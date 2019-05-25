@@ -10,6 +10,8 @@ Released under the MIT license: http://jsbin.mit-license.org
 <meta name="robots" content="noindex">
 <html>
 <head>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>CryptoCoin</title>
@@ -20,57 +22,24 @@ Released under the MIT license: http://jsbin.mit-license.org
 html {
   background-color: black;
 }
-p {
-  color: lightblue;
-}
-button {
-  margin: .4rem 0;
-  border-color: lightblue;
-  color: lightblue;
-  background-color: black;
-}
-label {
-    display: block;
-}
-
-input,
-label {
-    margin: .4rem 0;
-  border-color: lightblue;
-  background-color: black;
-  color: lightblue;
+div {
+    color: lightblue;
 }
 </style>
+<script type="application/javascript">
+function doSignin() {
+    window.localStorage.setItem(username, OliverAtRex);
+    window.location.href = '/resources/HomePage.html'
+}
+</script>
 </head>
 <body>
-  <h1>
-    CryptoCoin Sign In:
-  </h1>
-  <p>
-    Sign in with CryptoCoin:
-  </p>
-    <label for "name">
-Please Type Your Username:
-</label>
-<input type="text" id="name" name="name" required
-       minlength="4" maxlength="20" size="10">
- <button onclick="window.location.href = 'https://8080-dot-4789806-dot-devshell.appspot.com/resources/HomePage.html'">
-    Sign In
-  </button>
-<p>
-    Don't have an account?
-</p>
-<p>
-    Create one now:
-</p>
-<label for "name">
-Please Choose Your Username:
-(20 characters max)
-</label>
-<input type="text" id="name" name="name" required
-       minlength="4" maxlength="20" size="10">
- <button onclick="window.location.href = 'https://8080-dot-4789806-dot-devshell.appspot.com/resources/HomePage.html'">
-    Sign Up
-  </button>
+<h1>CryptoCoin Sign In:</h1>
+<div id="firebaseui-auth-container"></div>
+<div id="loader">Loading...</div>
+  <script src="/__/firebase/6.0.4/firebase-app.js"></script>
+  <script src="/__/firebase/6.0.4/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="CryptoCoin.Js"></script>
 </body>
 </html>
