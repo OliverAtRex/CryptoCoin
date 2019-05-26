@@ -16,6 +16,7 @@ Released under the MIT license: http://jsbin.mit-license.org
   <style id="jsbin-css">
 h1 {
   color: lightblue;
+  text-align: center;
  }
 html {
   background-color: black;
@@ -60,10 +61,7 @@ span#Balance {
 <p>
     This is your account balance:
 </p>
-<label for "name">
-Balance:
-</label>
-<span id=Balance>  $ 3 476 513 987 465 183 475  </span>
+<span id=Balance>  $ 0  </span>
 <p>
     Would you like to make a transaction?
 </p>
@@ -82,7 +80,6 @@ Balance:
 <script src="/__/firebase/6.0.4/firebase-app.js"></script>
   <script src="/__/firebase/6.0.4/firebase-auth.js"></script>
   <script src="/__/firebase/init.js"></script>
-  <script src="CryptoCoin.Js"></script>
   <script> 
        firebase.auth().onAuthStateChanged(function(user) {
             var element = document.getElementById("username");
