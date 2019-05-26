@@ -19,6 +19,7 @@ h1 {
  }
 html {
   background-color: black;
+  color: lightblue;
 }
 p {
   color: lightblue;
@@ -28,6 +29,8 @@ button {
   border-color: lightblue;
   color: lightblue;
   background-color: black;
+  font-size: 0.9rem;
+  font: italic 0.9em "Fira Sans", serif;
 }
 label {
     display: block;
@@ -39,6 +42,11 @@ label {
   border-color: lightblue;
   background-color: black;
   color: lightblue;
+}
+span#Balance {
+   border: 1px solid lightblue;
+   padding: 2px;
+   font: italic 0.9em "Fira Sans", serif;
 }
 </style>
 </head>
@@ -55,8 +63,7 @@ label {
 <label for "name">
 Balance:
 </label>
-<input type="text" id="name" name="name" required
-       minlength="4" maxlength="100" size="10">
+<span id=Balance>  $ 3 476 513 987 465 183 475  </span>
 <p>
     Would you like to make a transaction?
 </p>
