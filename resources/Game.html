@@ -19,12 +19,6 @@ p {
   color: lightblue;
   text-align: center;
 }
-p#small {
-  color: lightblue;
-  text-align: center;
-  font: italic;
-  font-size: 0.6rem;
-}
 button {
   margin: .4rem 0;
   border-color: lightblue;
@@ -61,44 +55,32 @@ img#cool{
 </head>
 <body>
 <h1>
-    Your CryptoCoin Homepage!
+    Your CryptoCoin Gaming page!
 </h1>
 <img id=cool
      src="https://freedesignfile.com/upload/2016/12/Polygon-with-blue-tech-background-vector.jpg">
 <p>
-    Hello <span id=username> </span>, how are you today?
+   Here you can find many games to play to make some money!
 </p>
 <p>
     This is your account balance:
 </p>
 <span id=Balance>  $ 0  </span>
 <p></p>
-<button onclick="window.location.href = '/Game.html';">
-  Make more money today!
+<p>
+    Here are some games (hopefuly more coming soon)!
+</p>
+<button>
+    Lottery!
 </button>
-<p>
-    Would you like to make a transaction?
-</p>
-    <button onclick="window.location.href = '/transfer.html';">
-        Transaction page
-    </button>
-<p>
-    Recent Transactions:
-</p>
-<p>
-    You have no recent transactions.
-</p>
-<button onclick="window.location.href = '/index.html';">
-        Sign Out?
+<p></p>
+<button>
+    Money timer!
 </button>
-<script src="/__/firebase/6.0.4/firebase-app.js"></script>
-  <script src="/__/firebase/6.0.4/firebase-auth.js"></script>
-  <script src="/__/firebase/init.js"></script>
-  <script> 
-       firebase.auth().onAuthStateChanged(function(user) {
-            var element = document.getElementById("username");
-            element.textContent = user.displayName;
-        });
+<p></p>
+<button onclick="window.location.href = '/HomePage.html'">
+    Back
+</button>
     </script>
 </body>
 </html>

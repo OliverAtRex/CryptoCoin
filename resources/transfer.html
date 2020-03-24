@@ -1,13 +1,5 @@
 <!DOCTYPE html>
-<!--
-Created using JS Bin
-http://jsbin.com
-
-Copyright (c) 2019 by OliverAtRex (http://jsbin.com/pexogon/1/edit)
-
-Released under the MIT license: http://jsbin.mit-license.org
--->
-<meta name="robots" content="noindex">
+5<meta name="robots" content="noindex">
 <html>
 <head>
   <meta charset="utf-8">
@@ -16,32 +8,47 @@ Released under the MIT license: http://jsbin.mit-license.org
 <style id="jsbin-css">
 h1 {
   color: lightblue;
+  text-align: center;
 }
 p {
   color: lightblue;
+  text-align: center;
 }
 html {
   background-color:black;
+  text-align: center;
 }
 ul {
   color: lightblue;
+  text-align: center;
 }
 label {
     display: block;
+    text-align: center;
 }
 
 input,
 label {
+  text-align: center;
     margin: .4rem 0;
   border-color: lightblue;
   background-color: black;
   color: lightblue;
 }
 button {
+  text-align: center;
   margin: .4rem 0;
   border-color: lightblue;
   color: lightblue;
   background-color: black;
+}
+img#warning {
+  text-align: center;
+  width: 10%;
+}
+img#cool {
+  text-align: center;
+  width: 25%;
 }
 </style>
 </head>
@@ -49,28 +56,27 @@ button {
 <h1>
   CryptoCoin Transaction Page
 </h1>
-<p>
-  Select Name:
-</p>
-<ul>
-  <li>Person 1</li>
-  <li>Person 2</li>
-  <li>Person 3</li>
-  <button class="favorite styled"
-        type="button">
-    More
-</button>
-</ul>
+<img id=cool
+     src="https://freedesignfile.com/upload/2016/12/Polygon-with-blue-tech-background-vector.jpg">
+<label for="name">Select Name:</label>
+<input type="text" id="name" name="name" required
+       minlength="4" maxlength="15" size="10">
 
 <label for="name">Amount:</label>
-
 <input type="text" id="name" name="name" required
        minlength="1" maxlength="9" size="10">
-<label for="name">Note:</label>
 
+<label for="name">Note:</label>
 <input type="text" id="name" name="name" required
-       minlength="4" maxlength="150" size="10">
-<p></p>
+       minlength="0" maxlength="100" size="10">
+<p>
+  Warning!
+</p>
+<img id=warning
+ src="https://lh3.googleusercontent.com/proxy/wKbVh9_Iz0EEsiaGlawtTjI3zK1YIHjpqe9mcT7dkfTi46jyqd2SyCGAkuxJJKVYZar04SnR2SIFgSBq5MeGTdL3jWVdvEfmA21CanzFeVFlvJf3WwY4ooZGoHQxulmBpB9N">
+<p>
+  Clicking transfer will be permenant and CANNOT be undone. 
+</p>
 <button class="favorite styled"
         type="button">
     Transfer
@@ -78,7 +84,7 @@ button {
 <p></p>
 <button class="favorite styled"
         type="button"
-        onclick="window.location.href = 'https://8080-dot-4789806-dot-devshell.appspot.com/resources/HomePage.html'">
+        onclick="window.location.href = '/HomePage.html'">
     Cancel?
 </button>
 <script src="/__/firebase/6.0.4/firebase-app.js"></script>

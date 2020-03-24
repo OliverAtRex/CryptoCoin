@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-<!--
-Created using JS Bin
-http://jsbin.com
-
-Copyright (c) 2019 by OliverAtRex (http://jsbin.com/hoyocoq/2/edit)
-
-Released under the MIT license: http://jsbin.mit-license.org
--->
 <meta name="robots" content="noindex">
 <html>
 <head>
@@ -26,6 +18,13 @@ html {
 div {
     color: lightblue;
 }
+img#cool {
+  width: 25%;
+}
+p {
+  color: lightblue;
+  text-align: center;
+}
 </style>
 <script type="application/javascript">
 function doSignin() {
@@ -36,6 +35,11 @@ function doSignin() {
 </head>
 <body>
 <h1>CryptoCoin</h1>
+<img id=cool
+     src="https://freedesignfile.com/upload/2016/12/Polygon-with-blue-tech-background-vector.jpg">
+<p>
+  Please sign in to acces your account.
+</p>
 <div id="firebaseui-auth-container"></div>
 <div id="loader">Loading...</div>
   <script src="/__/firebase/6.0.4/firebase-app.js"></script>
