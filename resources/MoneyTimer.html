@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>CryptoCoin</title>
+  <style id="jsbin-css">
+h1 {
+  color: lightblue;
+  text-align: center;
+ }
+html {
+  background-color: black;
+  color: lightblue;
+  text-align: center;
+}
+p {
+  color: lightblue;
+  text-align: center;
+}
+button {
+  margin: .4rem 0;
+  border-color: lightblue;
+  color: lightblue;
+  background-color: black;
+  font-size: 0.9rem;
+  font: italic 0.9em "Fira Sans", serif;
+  text-align: center;
+}
+label {
+    display: block;
+    text-align: center;
+}
+
+input,
+label {
+    margin: .4rem 0;
+  border-color: lightblue;
+  background-color: black;
+  color: lightblue;
+  text-align: center;
+}
+span#Balance {
+   border: 1px solid lightblue;
+   padding: 2px;
+   font: italic 0.9em "Fira Sans", serif;
+   text-align: center;
+}
+span#CoolDown {
+   border: 1px solid lightblue;
+   padding: 2px;
+   font: italic 0.9em "Fira Sans", serif;
+   text-align: center;
+}
+span#UpgradeCost {
+   border: 1px solid lightblue;
+   padding: 2px;
+   font: italic 0.9em "Fira Sans", serif;
+   text-align: center;
+}
+
+img#cool{
+  width: 25%;
+}
+</style>
+</head>
+<body>
+<h1>
+    Your CryptoCoin Money Clicker page!
+</h1>
+<img id=cool
+     src="https://freedesignfile.com/upload/2016/12/Polygon-with-blue-tech-background-vector.jpg">
+<p>
+    This is the Money Clicker game!
+</p>
+<p>
+    This is your account balance:
+</p>
+<span id=Balance>  $ 0  </span>
+<p></p>
+<p>
+    This is the Money Clicker Game. It works like this. You start with the ability to click once every ten minutes
+    to make $1. You can then pay $10 to upgrade your Money Clicker. You can make it so that it goes at $1 every 9 
+    minutes. This would be one upgrade. Each additional upgrade costs $10 more (ig. $20, $30, $40, etc.). If you 
+    upgrade enough you can go from $1 every minute to $2 every 10 minutes. The maximum is $20 a minute. Now I'll
+    let you loose to click that money!
+</p>
+
+<p>
+    Your current upgrade level:
+</p>
+<label>
+    $__ every __ minute(s)
+</label>
+<p></p>
+<button>,
+    Click here for $$
+</button>
+<p>
+    Cool down:
+</p>
+<span id=CoolDown> 0 Min </span>
+<p>
+    Current cost for next upgrade:
+</p>
+<span id=UpgradeCost> $10 </span>
+<p></p>
+<button onclick="window.location.href = '/Game.html'">
+    Back
+</button>
+    </script>
+</body>
+</html>
