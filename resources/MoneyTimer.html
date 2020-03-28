@@ -96,22 +96,33 @@ img#cool{
 <script src="/__/firebase/init.js"></script>
 <script>
 var db = firebase.firestore();
-db.collection("accounts").doc("RickTest")
-    .onSnapshot(function(doc) {
-        document.getElementById("Balance").innerText = 
-            "$" + doc.data().balance;
-    });
+var unsubscribe;
+firebase.auth().onAuthStateChanged(function(user) {
+    if (unsubscribe) unsubscribe();
+    if (!user) return;
+    unsubscribe = db.collection("accounts").doc(user.uid)
+        .onSnapshot(function(doc) {
+            document.getElementById("Balance").innerText = 
+                "$" + doc.data().balance;
+        });
+});
+
 function makeMoney() {
-    var bal = 0;
-    var docRef = db.collection("accounts").doc("RickTest");
+    var user = firebase.auth().currentUser;
+    if (!user) return;
+    var act;
+    var docRef = db.collection("accounts").doc(user.uid);
     docRef.get().then(function(doc) {
         if (doc.exists) {
-            bal = doc.data().balance;
+            act = doc.data();
+        } else {
+            act = {
+                balance: 0,
+                name: user.displayName 
+            };
         }
-        bal += 1;
-        docRef.set({
-            balance: bal
-        });
+        act.balance += 1;
+        docRef.set(act);
     });
 }
 </script>

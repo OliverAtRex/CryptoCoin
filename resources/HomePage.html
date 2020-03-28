@@ -86,16 +86,19 @@ img#cool{
   <script src="/__/firebase/7.13.1/firebase-firestore.js"></script>
   <script src="/__/firebase/init.js"></script>
   <script> 
+var unsubscribe;
 firebase.auth().onAuthStateChanged(function(user) {
     var element = document.getElementById("username");
     element.textContent = user.displayName;
-});
-var db = firebase.firestore();
-db.collection("accounts").doc("RickTest")
+
+    var db = firebase.firestore();
+    if (unsubscribe) unsubscribe();
+    unsubscribe = db.collection("accounts").doc(user.uid)
     .onSnapshot(function(doc) {
-        document.getElementById("Balance").innerText = 
+        document.getElementById("Balance").textContent = 
             "$" + doc.data().balance;
     });
+});
     </script>
 </body>
 </html>
