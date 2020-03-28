@@ -41,8 +41,18 @@ label {
   color: lightblue;
   text-align: center;
 }
-span {
+span#username {
+  padding: 2px;
+
+  text-align: center;
+}
+span#balance {
   border: 1px solid lightblue;
+  padding: 2px;
+  font: italic 0.9em "Fira Sans", serif;
+  text-align: center;
+}
+span#recent_transactions {
   padding: 2px;
   font: italic 0.9em "Fira Sans", serif;
   text-align: center;
@@ -57,14 +67,14 @@ img#cool{
     Your CryptoCoin Homepage!
 </h1>
 <img id=cool
-     src="https://freedesignfile.com/upload/2016/12/Polygon-with-blue-tech-background-vector.jpg">
+     src="Main_Image.jpg">
 <p>
     Hello <span id=username> </span>, how are you today?
 </p>
 <p>
     This is your account balance:
 </p>
-<span id=Balance>  $ 0  </span>
+<span id=balance>  $ 0  </span>
 <p></p>
 <button onclick="window.location.href = '/Game.html';">
   Make more money today!
@@ -79,6 +89,7 @@ img#cool{
     Recent Transactions:
 </p>
 <span id=recent_transactions> You have no recent transactions. </span>
+<p></p>
 <button onclick="window.location.href = '/index.html';">
         Sign Out?
 </button>
