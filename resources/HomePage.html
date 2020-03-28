@@ -41,11 +41,11 @@ label {
   color: lightblue;
   text-align: center;
 }
-span#Balance {
-   border: 1px solid lightblue;
-   padding: 2px;
-   font: italic 0.9em "Fira Sans", serif;
-   text-align: center;
+span {
+  border: 1px solid lightblue;
+  padding: 2px;
+  font: italic 0.9em "Fira Sans", serif;
+  text-align: center;
 }
 img#cool{
   width: 25%;
@@ -78,9 +78,7 @@ img#cool{
 <p>
     Recent Transactions:
 </p>
-<p>
-    You have no recent transactions.
-</p>
+<span id=recent_transactions> You have no recent transactions. </span>
 <button onclick="window.location.href = '/index.html';">
         Sign Out?
 </button>

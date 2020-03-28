@@ -41,19 +41,7 @@ label {
   color: lightblue;
   text-align: center;
 }
-span#Balance {
-   border: 1px solid lightblue;
-   padding: 2px;
-   font: italic 0.9em "Fira Sans", serif;
-   text-align: center;
-}
-span#CoolDown {
-   border: 1px solid lightblue;
-   padding: 2px;
-   font: italic 0.9em "Fira Sans", serif;
-   text-align: center;
-}
-span#UpgradeCost {
+span {
    border: 1px solid lightblue;
    padding: 2px;
    font: italic 0.9em "Fira Sans", serif;
@@ -90,9 +78,7 @@ img#cool{
 <p>
     Your current upgrade level:
 </p>
-<label>
-    $1 every 10 minute(s)
-</label>
+<span id=current_upgrade> $1 every 10 minute(s) </span>
 <p></p>
 <button>
     Click here for $$
