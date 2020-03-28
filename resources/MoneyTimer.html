@@ -75,7 +75,7 @@ img#cool{
 </p>
 <span id=current_upgrade> $1 every 10 minute(s) </span>
 <p></p>
-<button>
+<button onclick="makeMoney()">
     Click here for $$
 </button>
 <p>
@@ -90,6 +90,25 @@ img#cool{
 <button onclick="window.location.href = '/Game.html'">
     Back
 </button>
-    </script>
+<script src="/__/firebase/7.13.1/firebase-app.js"></script>
+<script src="/__/firebase/7.13.1/firebase-auth.js"></script>
+<script src="/__/firebase/7.13.1/firebase-firestore.js"></script>
+<script src="/__/firebase/init.js"></script>
+<script>
+var db = firebase.firestore();
+function makeMoney() {
+    var bal = 0;
+    var docRef = db.collection("accounts").doc("RickTest");
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            bal = doc.data().balance;
+        }
+        bal += 1;
+        docRef.set({
+            balance: bal
+        });
+    });
+}
+</script>
 </body>
 </html>
