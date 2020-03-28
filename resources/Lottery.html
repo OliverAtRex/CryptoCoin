@@ -5,17 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>CryptoCoin</title>
-  <style id="jsbin-css">
+  <style>
 h1 {
   color: lightblue;
   text-align: center;
  }
 html {
   background-color: black;
-  color: lightblue;
-  text-align: center;
-}
-p {
   color: lightblue;
   text-align: center;
 }
@@ -32,7 +28,6 @@ label {
     display: block;
     text-align: center;
 }
-
 input,
 label {
     margin: .4rem 0;
@@ -41,25 +36,13 @@ label {
   color: lightblue;
   text-align: center;
 }
-span#Balance {
-   border: 1px solid lightblue;
-   padding: 2px;
-   font: italic 0.9em "Fira Sans", serif;
-   text-align: center;
-}span#Balance_future {
-   border: 1px solid lightblue;
-   padding: 2px;
-   font: italic 0.9em "Fira Sans", serif;
-   text-align: center;
-}span#ticket_amount {
+span {
    padding: 2px;
    font: italic 0.9em "Fira Sans", serif;
    text-align: center;
 }
-span#enough_money {
-   padding: 2px;
-   font: italic 0.9em "Fira Sans", serif;
-   text-align: center;
+span.border {
+  border: 1px solid lightblue;
 }
 
 img#cool{
@@ -79,7 +62,7 @@ img#cool{
 <p>
     This is your account balance:
 </p>
-<span id=Balance>  $ 0  </span>
+<span id=Balance class=border>  $ 0  </span>
 <p></p>
 <p>
     This is the Lottery Game. It works like this. Once a week a pot of 100 000 CryptoCoins is added to the list of possile wins.
@@ -90,7 +73,7 @@ img#cool{
 <p>
     If you bought one $100 ticket your balance would be:
 </p>
-<span id=Balance_future> $ -100 </span>
+<span id=Balance_future class=border> $ -100 </span>
 <p>
   Buy a ticket today!
 </p>
