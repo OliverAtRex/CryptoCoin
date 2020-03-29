@@ -122,9 +122,12 @@ function makeMoney() {
                 lastMadeTime: firebase.firestore.Timestamp.now(),
             };
         }
-
+        var seconds = firebase.firestore.Timestamp.now() - act.lastMadeTime;
+        if (seconds <= 600) {
           act.balance += 1;
           docRef.set(act);
+          act.lastMadeTime = firebase.firestore.Timestamp.now()
+        }
         
     });
 }
