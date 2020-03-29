@@ -96,6 +96,7 @@ img#cool{
 <script src="/__/firebase/init.js"></script>
 <script>
 var db = firebase.firestore();
+var curAct;
 var unsubscribe;
 firebase.auth().onAuthStateChanged(function(user) {
     if (unsubscribe) unsubscribe();
@@ -104,15 +105,23 @@ firebase.auth().onAuthStateChanged(function(user) {
         .onSnapshot(function(doc) {
             document.getElementById("Balance").innerText = 
                 "$" + doc.data().balance;
- //           coolDownTracker();
+            curAct = doc.data();
+            coolDownTracker();
         })
 });
 
-/*function coolDownTracker() {
-  var seconds = act.lastMadeTime - 600;
+function coolDownTracker() {
+  if (!curAct) return;
+  var secondsSince = firebase.firestore.Timestamp.now() - curAct.lastMadeTime;
+  var cooldownSeconds = 600 - secondsSince;
+  if (cooldownSeconds < 0) {
+    cooldownSeconds = 0;
+  }
   document.getElementById("coolDown").innerText = 
-    seconds + "seconds";
-}*/
+    cooldownSeconds + " seconds";
+}
+
+window.setInterval(coolDownTracker, 500);
 
 function makeMoney() {
     var user = firebase.auth().currentUser;
