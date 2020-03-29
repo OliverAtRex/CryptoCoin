@@ -66,12 +66,12 @@ span#small{
 <p>
   Make sure that you have spelt the name corectly
 </p>
-<label for="name">Amount:</label>
-<input type="text" id="name" name="name" required
+<label for="amt">Amount:</label>
+<input type="text" id="amt" name="amt" required
        minlength="1" maxlength="13" size="10">
 
-<label for="name">Note:</label>
-<input type="text" id="name" name="name" required
+<label for="note">Note:</label>
+<input type="text" id="note" name="note" required
        minlength="0" maxlength="100" size="10">
 <p>
   Warning!
@@ -82,7 +82,8 @@ span#small{
   Clicking transfer will be permenant and CANNOT be undone. 
 </p>
 <button class="favorite styled"
-        type="button">
+        type="button"
+        onclick="doTransfer()">
     Transfer
 </button>
 <p></p>
@@ -93,10 +94,72 @@ span#small{
         onclick="window.location.href = '/HomePage.html'">
     Back
 </button>
-<script src="/__/firebase/6.0.4/firebase-app.js"></script>
-<script src="/__/firebase/6.0.4/firebase-auth.js"></script>
+<script src="/__/firebase/7.13.1/firebase-app.js"></script>
+<script src="/__/firebase/7.13.1/firebase-auth.js"></script>
 <script src="/__/firebase/7.13.1/firebase-firestore.js"></script>
 <script src="/__/firebase/init.js"></script>
 <script src="CryptoCoin.Js"></script>
+<script>
+// TODO: share with MoneyTimer
+var db = firebase.firestore();
+var unsubscribe;
+var curAct;
+var curActRef;
+firebase.auth().onAuthStateChanged(function(user) {
+    if (unsubscribe) unsubscribe();
+    if (!user) return;
+    curActRef = db.collection("accounts").doc(user.uid);
+    unsubscribe = curActRef.onSnapshot(function(doc) {
+      curAct = doc.data();
+    });
+});
+
+function doTransfer() {
+  var amt = parseInt(document.getElementById("amt").value,10);
+  // TODO: display errors / status to the user instead of console
+
+  // Compute and sanity check the transfer amount
+  if (isNaN(amt)) {
+    console.error("Couldn't parse amount");
+    return;
+  }
+  if (amt <= 0) {
+    console.error("Amount must be positive");
+    return;
+  }
+  if (amt > curAct.balance) {
+    console.error("Amount can't be greater than balance");
+    return;
+  }
+  console.log("Will transfer " + amt);
+
+  // Look up the destination account
+  var name = document.getElementById("name").value.trim();
+  if (name.length < 3) {
+    console.error("Invalid name");
+    return;
+  }
+
+  db.collection("accounts")
+    .where("name","==",name)
+    .limit(1)
+    .get().then(function(querySnapshot) {
+      if (querySnapshot.size < 1) {
+        console.error("No account with that name");
+        return;
+      }
+      var dstActRef = querySnapshot.docs[0].ref;
+      dstActRef.get().then(function(doc) {
+        dstAct = doc.data();
+        // Do the actual transfer
+        dstAct.balance += amt;
+        curAct.balance -= amt;
+        dstActRef.set(dstAct);
+        curActRef.set(curAct);
+        console.log("Transfer complete");
+      });
+    });
+}
+</script>
 </body>
 </html>
