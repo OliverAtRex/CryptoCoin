@@ -118,11 +118,14 @@ function makeMoney() {
         } else {
             act = {
                 balance: 0,
-                name: user.displayName 
+                name: user.displayName,
+                lastMadeTime: firebase.firestore.Timestamp.now(),
             };
         }
-        act.balance += 1;
-        docRef.set(act);
+
+          act.balance += 1;
+          docRef.set(act);
+        
     });
 }
 </script>
