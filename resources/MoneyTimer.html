@@ -75,7 +75,7 @@ img#cool{
 </p>
 <span id=coolDown></span>
 <p></p>
-<button onclick="window.location.href = '/HomePage.html';">
+<button onclick="window.location.href = '/';">
     Back
 </button>
 <script src="/__/firebase/7.13.1/firebase-app.js"></script>
@@ -88,7 +88,11 @@ var curAct;
 var unsubscribe;
 firebase.auth().onAuthStateChanged(function(user) {
     if (unsubscribe) unsubscribe();
-    if (!user) return;
+    if (!user) {
+        // Need to sign in
+        window.location.href = '/login.html';
+        return;
+    }
     unsubscribe = db.collection("accounts").doc(user.uid)
         .onSnapshot(function(doc) {
             document.getElementById("Balance").innerText = 

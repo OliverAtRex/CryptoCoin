@@ -2,77 +2,114 @@
 <meta name="robots" content="noindex">
 <html>
 <head>
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>CryptoCoin</title>
-<style>
- h1 {
+  <style>
+h1 {
   color: lightblue;
   text-align: center;
  }
 html {
   background-color: black;
+  color: lightblue;
   text-align: center;
 }
-div {
-    color: lightblue;
+button {
+  margin: .4rem 0;
+  border-color: lightblue;
+  color: lightblue;
+  background-color: black;
+  font-size: 0.9rem;
+  font: italic 0.9em "Fira Sans", serif;
+  text-align: center;
+}
+label {
+    display: block;
     text-align: center;
 }
-img#cool {
+
+input,
+label {
+    margin: .4rem 0;
+  border-color: lightblue;
+  background-color: black;
+  color: lightblue;
+  text-align: center;
+}
+span {
+  padding: 2px;
+  font: italic 0.9em "Fira Sans", serif;
+  text-align: center;
+}
+span#Balance {
+  border: 1px solid lightblue;
+}
+img#cool{
   width: 25%;
 }
 </style>
-<script type="application/javascript">
-function doSignin() {
-    window.localStorage.setItem(username, OliverAtRex);
-    window.location.href = '/resources/HomePage.html'
-}
-</script>
 </head>
 <body>
 <h1>
-  CryptoCoin
+    Your CryptoCoin Homepage!
 </h1>
 <img id=cool
      src="Main_Image.jpg">
 <p>
-  Please sign in to acces your account.
+    Hello <span id=username> </span>, how are you today?
 </p>
-<div id="firebaseui-auth-container"></div>
-<div id="loader">Loading...</div>
-  <script src="/__/firebase/6.0.4/firebase-app.js"></script>
-  <script src="/__/firebase/6.0.4/firebase-auth.js"></script>
+<p>
+    This is your account balance:
+</p>
+<span id=Balance></span>
+<p></p>
+<button onclick="window.location.href = '/MoneyTimer.html';">
+  Make more money today!
+</button>
+<p>
+    Would you like to make a transaction?
+</p>
+    <button onclick="window.location.href = '/transfer.html';">
+        Transaction page
+    </button>
+<p>
+    Recent Transactions:
+</p>
+<span id=recent_transactions> Recent transactions doesn't work yet, but soon it will! </span>
+<p></p>
+<button onclick="signOut()">
+        Sign Out?
+</button>
+  <script src="/__/firebase/7.13.1/firebase-app.js"></script>
+  <script src="/__/firebase/7.13.1/firebase-auth.js"></script>
+  <script src="/__/firebase/7.13.1/firebase-firestore.js"></script>
   <script src="/__/firebase/init.js"></script>
-  <script src="CryptoCoin.Js"></script>
-  <script>
-// Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-var uiConfig = {
-  callbacks: {
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
-      return true;
-    },
-    uiShown: function() {
-      // The widget is rendered.
-      // Hide the loader.
-      document.getElementById('loader').style.display = 'none';
+  <script> 
+var unsubscribe;
+firebase.auth().onAuthStateChanged(function(user) {
+    if (!user) {
+        // Need to sign in
+        window.location.href = '/login.html';
+        return;
     }
-  },
-  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-  signInFlow: 'popup',
-  signInSuccessUrl: 'HomePage.html',
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  ],
-};
-// The start method will wait until the DOM is loaded.
-ui.start('#firebaseui-auth-container', uiConfig);
-</script>
+    var element = document.getElementById("username");
+    element.textContent = user.displayName;
+
+    var db = firebase.firestore();
+    if (unsubscribe) unsubscribe();
+    unsubscribe = db.collection("accounts").doc(user.uid)
+    .onSnapshot(function(doc) {
+        document.getElementById("Balance").textContent = 
+            "$" + doc.data().balance;
+    });
+});
+
+function signOut() {
+    firebase.auth().signOut().then(function() {
+        window.location.href = '/login.html';
+    });
+}
+    </script>
 </body>
 </html>
