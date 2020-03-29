@@ -78,7 +78,7 @@ img#cool{
 </p>
 <span id=recent_transactions> Recent transactions doesn't work yet, but soon it will! </span>
 <p></p>
-<button onclick="window.location.href = '/index.html';">
+<button onclick="signOut()">
         Sign Out?
 </button>
   <script src="/__/firebase/7.13.1/firebase-app.js"></script>
@@ -88,6 +88,11 @@ img#cool{
   <script> 
 var unsubscribe;
 firebase.auth().onAuthStateChanged(function(user) {
+    if (!user) {
+        // Need to sign in
+        window.location.href = '/index.html';
+        return;
+    }
     var element = document.getElementById("username");
     element.textContent = user.displayName;
 
@@ -99,6 +104,12 @@ firebase.auth().onAuthStateChanged(function(user) {
             "$" + doc.data().balance;
     });
 });
+
+function signOut() {
+    firebase.auth().signOut().then(function() {
+        window.location.href = '/index.html';
+    });
+}
     </script>
 </body>
 </html>
