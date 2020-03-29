@@ -39,6 +39,11 @@ button {
   color: lightblue;
   background-color: black;
 }
+span {
+  text-align: center;
+  color: lightblue;
+  font: italic 0.9em "Fira Sans", serif;
+}
 img#warning {
   text-align: center;
   width: 5%;
@@ -63,10 +68,8 @@ span#small{
 <label for="name">Select Name:</label>
 <input type="text" id="name" name="name" required
        minlength="4" maxlength="15" size="10">
-<p>
-  Make sure that you have spelt the name corectly
-</p>
-<label for="amt">Amount:</label>
+
+<label for="amt">Amount (amounts that include decimals will only send the whole number):</label>
 <input type="text" id="amt" name="amt" required
        minlength="1" maxlength="13" size="10">
 
@@ -81,13 +84,16 @@ span#small{
 <p>
   Clicking transfer will be permenant and CANNOT be undone. 
 </p>
+<p></p>
+<span id=error></span>
+<p></p>
 <button class="favorite styled"
         type="button"
         onclick="doTransfer()">
     Transfer
 </button>
 <p></p>
-<span id=small>There will be a 0.5% transaction fee</span>
+<span id=small>There will be a 0.5% transaction fee, but this is not in operation</span>
 <p></p>
 <button class="favorite styled"
         type="button"
@@ -121,14 +127,20 @@ function doTransfer() {
   // Compute and sanity check the transfer amount
   if (isNaN(amt)) {
     console.error("Couldn't parse amount");
+    document.getElementById("error").innerText =
+      "Amount must be a number";
     return;
   }
   if (amt <= 0) {
     console.error("Amount must be positive");
+    document.getElementById("error").innerText =
+      "Amount must be positive";
     return;
   }
   if (amt > curAct.balance) {
     console.error("Amount can't be greater than balance");
+    document.getElementById("error").innerText =
+      "Amount must be greater than balance";
     return;
   }
   console.log("Will transfer " + amt);
@@ -137,6 +149,8 @@ function doTransfer() {
   var name = document.getElementById("name").value.trim();
   if (name.length < 3) {
     console.error("Invalid name");
+    document.getElementById("error").innerText =
+      "The name is invalid";
     return;
   }
 
@@ -146,6 +160,8 @@ function doTransfer() {
     .get().then(function(querySnapshot) {
       if (querySnapshot.size < 1) {
         console.error("No account with that name");
+        document.getElementById("error").innerText =
+      "That account doesn't exsit";
         return;
       }
       var dstActRef = querySnapshot.docs[0].ref;
@@ -157,6 +173,8 @@ function doTransfer() {
         dstActRef.set(dstAct);
         curActRef.set(curAct);
         console.log("Transfer complete");
+        document.getElementById("error").innerText =
+      "Transfer complete";
       });
     });
 }

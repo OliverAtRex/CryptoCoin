@@ -63,17 +63,9 @@ img#cool{
 <span id=Balance></span>
 <p></p>
 <p>
-    This is the Money Clicker Game. It works like this. You start with the ability to click once every ten minutes
-    to make $1. You can then pay $10 to upgrade your Money Clicker. You can make it so that it goes at $1 every 9 
-    minutes. This would be one upgrade. Each additional upgrade costs $10 more (ig. $20, $30, $40, etc.). If you 
-    upgrade enough you can go from $1 every minute to $2 every 10 minutes. The maximum is $20 a minute. Now I'll
-    let you loose to click that money!
+    This is the Money Clicker Game. You can click the "Click here for $$" button once every 10 minutes to make one dollar. You can see your cool down in seconds below as well.
 </p>
 
-<p>
-    Your current upgrade level:
-</p>
-<span id=current_upgrade> $1 every 10 minute(s) </span>
 <p></p>
 <button onclick="makeMoney()">
     Click here for $$
@@ -82,10 +74,6 @@ img#cool{
     Cool down:
 </p>
 <span id=coolDown></span>
-<p>
-    Current cost for next upgrade:
-</p>
-<span id=UpgradeCost> $ 10 </span>
 <p></p>
 <button onclick="window.location.href = '/Game.html'">
     Back
@@ -118,7 +106,7 @@ function coolDownTracker() {
     cooldownSeconds = 0;
   }
   document.getElementById("coolDown").innerText = 
-    cooldownSeconds + " seconds";
+    Math.round(cooldownSeconds) + " seconds";
 }
 
 window.setInterval(coolDownTracker, 500);
