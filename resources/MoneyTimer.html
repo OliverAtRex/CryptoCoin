@@ -81,7 +81,7 @@ img#cool{
 <p>
     Cool down:
 </p>
-<span id=CoolDown> 0 Min </span>
+<span id=coolDown></span>
 <p>
     Current cost for next upgrade:
 </p>
@@ -104,8 +104,15 @@ firebase.auth().onAuthStateChanged(function(user) {
         .onSnapshot(function(doc) {
             document.getElementById("Balance").innerText = 
                 "$" + doc.data().balance;
-        });
+ //           coolDownTracker();
+        })
 });
+
+/*function coolDownTracker() {
+  var seconds = act.lastMadeTime - 600;
+  document.getElementById("coolDown").innerText = 
+    seconds + "seconds";
+}*/
 
 function makeMoney() {
     var user = firebase.auth().currentUser;
@@ -123,10 +130,10 @@ function makeMoney() {
             };
         }
         var seconds = firebase.firestore.Timestamp.now() - act.lastMadeTime;
-        if (seconds <= 600) {
+        if (seconds > 600) {
           act.balance += 1;
-          docRef.set(act);
           act.lastMadeTime = firebase.firestore.Timestamp.now()
+          docRef.set(act);
         }
         
     });
