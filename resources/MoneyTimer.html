@@ -96,7 +96,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     unsubscribe = db.collection("accounts").doc(user.uid)
         .onSnapshot(function(doc) {
             document.getElementById("Balance").innerText = 
-                "$" + doc.data().balance;
+                "$" + doc.data().Balance;
             curAct = doc.data();
             coolDownTracker();
         })
