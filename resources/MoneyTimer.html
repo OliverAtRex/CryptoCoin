@@ -60,7 +60,7 @@ img#cool{
 <p>
     This is your account balance:
 </p>
-<span id=Balance></span>
+<span id=balance></span>
 <p></p>
 <p>
     This is the Money Clicker Game. You can click the "Click here for $$" button once every 10 minutes to make one dollar. You can see your cool down in seconds below as well.
@@ -94,10 +94,14 @@ firebase.auth().onAuthStateChanged(function(user) {
         return;
     }
     unsubscribe = db.collection("accounts").doc(user.uid)
-        .onSnapshot(function(doc) {
-            document.getElementById("Balance").innerText = 
-                "$" + doc.data().Balance;
+        .onSnapshot(function(doc) { 
             curAct = doc.data();
+            var zeroBalance = 0;
+            if (curAct) {
+                zeroBalance = curAct.balance;
+            }
+            document.getElementById("balance").innerText = 
+              "$" + zeroBalance;
             coolDownTracker();
         })
 });
@@ -127,7 +131,7 @@ function makeMoney() {
             act = {
                 balance: 0,
                 name: user.displayName,
-                lastMadeTime: firebase.firestore.Timestamp.now(),
+                lastMadeTime: 0,
             };
         }
         var seconds = firebase.firestore.Timestamp.now() - act.lastMadeTime;
